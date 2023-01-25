@@ -25,7 +25,6 @@
 
 
                                 @foreach($users as $user)
-                                    {{dd($user)}}
                                     <tr>
                                         <td></td>
                                         <td>Otto</td>
