@@ -17,7 +17,15 @@ use Illuminate\Support\Facades\Route;
      return view('welcome');
  });
 
+
 Auth::routes();
+
+
+// This is for admin access
+Route::get('/admin', function () {
+    return view('admin.index');
+})->middleware(['auth','role:admin'])-> name('admin.index');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
