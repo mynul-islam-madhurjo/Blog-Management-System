@@ -22,10 +22,12 @@ Auth::routes();
 
 
 // This is for admin access
-Route::get('/admin', function () {
+/*Route::get('/admin', function () {
     return view('admin.index');
-})->middleware(['auth','role:admin'])-> name('admin.index');
+})->middleware(['auth','role:admin'])-> name('admin.index');*/
 
-
+Route::get('/admin', [App\Http\Controllers\BlogController::class, 'adminIndex'])->middleware(['auth','role:admin'])-> name('admin.index');
+Route::get('/admin/create', [App\Http\Controllers\BlogController::class, 'create'])->middleware(['auth','role:admin'])-> name('admin.create');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
 

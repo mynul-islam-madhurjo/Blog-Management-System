@@ -7,3 +7,8 @@
 7. Call The seeder from database seeder  $this->call(RoleSeeder::class); $this->call(AdminSeeder::class);
 8. Run php artisan migrate:fresh --seed
 
+Adding a column to users table
+1.php artisan make:migration add_role_to_users_table --table=users
+2. Go to migration file and add $table-> integer('status')->default(0);
+3. php artisan migrate
+
