@@ -15,9 +15,9 @@
                         Admin Mangement
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ route('admin.index') }}">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.index') }}">Manage Blogs</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.genre.index') }}">Manage Genres</a></li>
+                        <li><a class="dropdown-item" href="#">Manage Users</a></li>
                     </ul>
                 </li>
             </ul>

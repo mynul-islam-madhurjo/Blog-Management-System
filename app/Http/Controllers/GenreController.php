@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Blog;
-
-class BlogController extends Controller
+use App\Models\BlogGenre;
+class GenreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,21 +13,12 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
-        return view('blog.index',compact("blogs"));
+        //
+        $genres = BlogGenre::all();
+        return view('admin.blog_genre.index',compact("genres"));
+
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function adminIndex()
-    {
-        $blogs = Blog::all();
-        return view('admin.index',compact("blogs"));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +28,7 @@ class BlogController extends Controller
     {
         //
 
-        return view('admin.create');
+        return view('admin.blog_genre.create');
     }
 
     /**
@@ -50,7 +40,6 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //
-
     }
 
     /**

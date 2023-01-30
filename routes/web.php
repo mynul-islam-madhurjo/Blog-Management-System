@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +29,21 @@ Auth::routes();
     return view('admin.index');
 })->middleware(['auth','role:admin'])-> name('admin.index');*/
 
-Route::get('/admin', [App\Http\Controllers\BlogController::class, 'adminIndex'])->middleware(['auth','role:admin'])-> name('admin.index');
-Route::get('/admin/create', [App\Http\Controllers\BlogController::class, 'create'])->middleware(['auth','role:admin'])-> name('admin.create');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+
+
+
+Route::middleware(['auth','role:admin'])->group(function () {
+
+    //Blog Routes
+    Route::get('/admin', [BlogController::class, 'adminIndex'])-> name('admin.index');
+    Route::get('/admin/create', [BlogController::class, 'create'])-> name('admin.create');
+
+    //Genre Routes
+    Route::get('/admin/genres', [GenreController::class, 'index'])-> name('admin.genre.index');
+    Route::get('/admin/genres/create', [GenreController::class, 'create'])-> name('admin.genre.create');
+    Route::post('/admin/genres/create', [GenreController::class, 'store'])-> name('admin.genre.create');
+    });
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
 
