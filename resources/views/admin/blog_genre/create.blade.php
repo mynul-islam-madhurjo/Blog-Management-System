@@ -6,22 +6,27 @@
     <div class="col-12 col-md-8 offset-md-2">
         <h1>Create New Catagory</h1>
         <hr>
-        <form action="{{ route('admin.genre.create') }}" method="post" data-parsley-validate>
+        <form action="{{ route('admin.genre.store') }}" method="post" data-parsley-validate>
+            @csrf
+
             <div class="form-group">
                 <label for="title">Catagory</label>
-                <input class="form-control" type="text" name="title" maxlength="20" required>
+                <input class="form-control" type="text" name="catagory" maxlength="25" required>
+                @if($errors->has('catagory'))<span class="required text-danger" >{{ $errors->first('catagory') }}</span>@endif
             </div>
 
             <div class="form-group">
-                <label for="slug">Status</label>
-                <div class="option">
-                    .
-                </div>
-
-                <input class="form-control" type="text" name="slug" minlength="5" required>
+                <label for="status">Status</label>
+                <select id="status" name="status" class="form-control">
+                    <option value="1"> Active</option>
+                    <option value="0"> Inactive</option>
+                </select>
             </div>
 
-            <button type="submit" name='submit' class="btn btn-success form-control">Create Post</button>
+            <div class="div" style="padding-top: 10px">
+                <button type="submit" name='submit' class="btn btn-success form-control">Create Catagory</button>
+            </div>
+
         </form>
     </div>
 </div>

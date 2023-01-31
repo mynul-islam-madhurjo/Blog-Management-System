@@ -37,11 +37,12 @@ Route::middleware(['auth','role:admin'])->group(function () {
     //Blog Routes
     Route::get('/admin', [BlogController::class, 'adminIndex'])-> name('admin.index');
     Route::get('/admin/create', [BlogController::class, 'create'])-> name('admin.create');
+    Route::post('/admin/create', [BlogController::class, 'store'])-> name('admin.store');
 
     //Genre Routes
     Route::get('/admin/genres', [GenreController::class, 'index'])-> name('admin.genre.index');
     Route::get('/admin/genres/create', [GenreController::class, 'create'])-> name('admin.genre.create');
-    Route::post('/admin/genres/create', [GenreController::class, 'store'])-> name('admin.genre.create');
+    Route::post('/admin/genres/create', [GenreController::class, 'store'])-> name('admin.genre.store');
     });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

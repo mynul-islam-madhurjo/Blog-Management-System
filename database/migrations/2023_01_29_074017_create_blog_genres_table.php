@@ -16,7 +16,8 @@ class CreateBlogGenresTable extends Migration
         Schema::create('blog_genres', function (Blueprint $table) {
             $table->id();
             $table->string('catagory');
-            $table->integer('status');
+            $table->boolean('status')->default(1);
+            $table->timestamps();
         });
     }
 

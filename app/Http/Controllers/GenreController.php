@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogGenre;
+use Session;
 class GenreController extends Controller
 {
     /**
@@ -39,7 +40,26 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $inputs = $request->all();
+
+        $validator = \Validator::make($inputs, array(
+            'catagory' => 'required|max:25',
+        ));
+
+        if ($validator->fails()) {
+            return Redirect()->back()->withErrors($validator)->withInput();
+        }
+        $catagory = new BlogGenre;
+
+        $data = array(
+            'catagory' => $request->catagory,
+            'status' => (int)$request->status,
+        );
+
+        $catagory->fill($data)->save();
+        Session::flash('success', 'The category was created successfully!');
+        return Redirect()->route('admin.genre.index');
     }
 
     /**

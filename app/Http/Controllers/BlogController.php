@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogGenre;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 
@@ -37,8 +38,12 @@ class BlogController extends Controller
     public function create()
     {
         //
+//        $genreLists   = $this->makeDD(BlogGenre::orderBy('catagory')->pluck('catagory', 'id'));
+//        dd($genreList);
 
-        return view('admin.create');
+        $genreLists = BlogGenre::all();
+
+        return view('admin.create', compact('genreLists'));
     }
 
     /**
@@ -50,6 +55,8 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         //
+        $inputs = $request->all();
+        dd($inputs);
 
     }
 

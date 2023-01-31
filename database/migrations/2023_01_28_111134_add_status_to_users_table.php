@@ -15,7 +15,7 @@ class AddStatusToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //Adding a column to users table
-            $table-> integer('status')->default(0);
+            $table-> boolean('status')->default(0);
 
         });
     }
