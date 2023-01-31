@@ -10,7 +10,7 @@
             @csrf
 
             <div class="form-group">
-                <label for="title">Catagory</label>
+                <label for="title">Category</label>
                 <input class="form-control" type="text" name="catagory" maxlength="25" required>
                 @if($errors->has('catagory'))<span class="required text-danger" >{{ $errors->first('catagory') }}</span>@endif
             </div>

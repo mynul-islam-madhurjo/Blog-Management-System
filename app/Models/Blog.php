@@ -20,6 +20,7 @@ class Blog extends Model
     public $timestamps  = false;
     protected $fillable = [
         'user_id',
+        'blog_genre_id',
         'description',
         'title',
         'status',

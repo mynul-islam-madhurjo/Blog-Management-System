@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogGenre;
+use App\Models\posttag;
+use App\Models\tag;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Session;
+
 
 class BlogController extends Controller
 {
@@ -40,10 +44,10 @@ class BlogController extends Controller
         //
 //        $genreLists   = $this->makeDD(BlogGenre::orderBy('catagory')->pluck('catagory', 'id'));
 //        dd($genreList);
-
+        $tagLists = tag::all();
         $genreLists = BlogGenre::all();
 
-        return view('admin.create', compact('genreLists'));
+        return view('admin.create', compact('genreLists','tagLists'));
     }
 
     /**
@@ -56,7 +60,39 @@ class BlogController extends Controller
     {
         //
         $inputs = $request->all();
-        dd($inputs);
+        //dd(auth()->user()->id);
+        //return($inputs);
+        $validator = \Validator::make($inputs, array(
+            'title' => 'required|max:25',
+            'blog_genre_id' => 'required',
+            'description' => 'required',
+        ));
+        if ($validator->fails()) {
+            return Redirect()->back()->withErrors($validator)->withInput();
+        }
+        $blog = new Blog();
+        //Blog
+        $data = array(
+            'title' => $request->title,
+            'blog_genre_id' => (int)$request->blog_genre_id,
+            'status' => (int)$request->status,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id,
+        );
+        $blog->fill($data)->save();
+        $var = $blog->id;
+        $arrTags = $request->tags;
+        foreach ($arrTags  as $arrTag){
+            $data = array(
+                'tag_id' => (int)$arrTag,
+                'blog_id' => $var,
+            );
+            $tag = new posttag();
+            $tag->fill($data)->save();
+        }
+
+        Session::flash('success', 'The Blog was created successfully!');
+        return Redirect()->route('admin.index');
 
     }
 

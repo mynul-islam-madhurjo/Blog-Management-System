@@ -1,6 +1,6 @@
 1. Install Spatie Package https://spatie.be/docs/laravel-permission/v5/installation-laravel
 2. Set Middleware https://spatie.be/docs/laravel-permission/v5/basic-usage/middleware
-3. Create Role & Admin Seeder php artisan make:seeder RoleSeeder, php artisan make:seeder AdminSeeder
+    3. Create Role & Admin Seeder php artisan make:seeder RoleSeeder, php artisan make:seeder AdminSeeder
 4. Go to RoleSeeder Role::create(['name' => 'admin']); Role::create(['name' => 'user']);
 5. Go to Admin Seeder Create Admin.
 6. Now we will assign role Using permission via role $user->assignRole(['user', 'admin']);

@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+
+    <link href="{{ asset('css/parsley.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
+
+@endsection
+
+
 @section('content')
 
 <div class="row">
@@ -29,6 +37,15 @@
             </div>
 
             <div class="form-group">
+                <select class="form-control select2-multi" name="tags[]" multiple="multiple">
+                    @foreach($tagLists as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
+            <div class="form-group">
                 <label for="status">Status</label>
                 <select id="status" name="status" class="form-control">
                     <option value="1"> Active</option>
@@ -37,27 +54,6 @@
             </div>
 
 
-
-
-
-
-            {{--            <div class="form-group">
-                            <select class="form-control select2-multi" name="tags[]" multiple="multiple">
-                                @foreach($tags as $tag)
-                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>--}}
-
-{{--            <div class="form-group">
-                <select class="custom-select" name="category_id">
-                    <option disabled selected value> -- Select a Category -- </option>
-                    @foreach($categories as $category)
-                       <option value="{{ $category->id }}">{{ $category->category }}</option>
-                    @endforeach
-                </select>
-            </div>--}}
-
             <button type="submit" name='submit' class="btn btn-success form-control my-4" >Create Post</button>
         </form>
     </div>
@@ -65,7 +61,6 @@
 
 @stop
 
-{{--
 @section('scripts')
 
     <script src="{{ asset('js/parsley.min.js') }}"></script>
@@ -78,4 +73,4 @@
         });
     </script>
 
-@stop--}}
+@stop

@@ -6,10 +6,10 @@
     <div class="container">
         <div class="row">
             <div class="col-10">
-                <h1>Category</h1>
+                <h1>Tags</h1>
             </div>
             <div class="col-12 col-md-2">
-                <a href="{{ route('admin.genre.create') }}" class="btn btn-lg btn-block btn-primary">New Category</a>
+                <a href="{{ route('admin.tag.create') }}"  class="btn btn-lg btn-block btn-primary">New Tag</a>
             </div>
         </div>
         <div class="row">
@@ -17,19 +17,17 @@
                 <table class="table">
                     <thead>
                     <th>#</th>
-                    <th class="large-col">Category</th>
-                    <th class="large-col">Status</th>
+                    <th class="large-col">Tags</th>
                     <th></th>
                     </thead>
                     <tbody>
-                        @foreach($genres as $genre)
+                        @foreach($tags as $tag)
 
                             <tr>
-                                <td>{{ $genre->id }}</td>
-                                <td>{{ $genre->catagory }}</td>
-                                <td>@if($genre->status==1){{'Active'}}@else{{'Inactive'}}@endif </td>
+                                <td>{{ $tag->id }}</td>
+                                <td>{{ $tag->name }}</td>
                                 <td>
-{{--                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
+{{--                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>--}}
                                     <a href="" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
                                     <a href="" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>

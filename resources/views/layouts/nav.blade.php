@@ -17,6 +17,7 @@
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('admin.index') }}">Manage Blogs</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.genre.index') }}">Manage Genres</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.tag.index') }}">Manage Tags</a></li>
                         <li><a class="dropdown-item" href="#">Manage Users</a></li>
                     </ul>
                 </li>

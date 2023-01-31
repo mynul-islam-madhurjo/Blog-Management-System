@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tag;
 use Illuminate\Http\Request;
-use App\Models\BlogGenre;
 use Session;
-class GenreController extends Controller
+
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,8 @@ class GenreController extends Controller
     public function index()
     {
         //
-        $genres = BlogGenre::all();
-        return view('admin.blog_genre.index',compact("genres"));
-
+        $tags = tag::all();
+        return view('admin.tags.index',compact("tags"));
     }
 
     /**
@@ -28,8 +28,7 @@ class GenreController extends Controller
     public function create()
     {
         //
-
-        return view('admin.blog_genre.create');
+        return view('admin.tags.create');
     }
 
     /**
@@ -40,23 +39,25 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
         $inputs = $request->all();
 
         $validator = \Validator::make($inputs, array(
-            'catagory' => 'required|max:25',
+            'name' => 'required|max:25',
         ));
+
         if ($validator->fails()) {
             return Redirect()->back()->withErrors($validator)->withInput();
         }
-        $catagory = new BlogGenre;
+        $tag = new tag();
+
         $data = array(
-            'catagory' => $request->catagory,
-            'status' => (int)$request->status,
+            'name' => $request->name,
         );
-        $catagory->fill($data)->save();
-        Session::flash('success', 'The category was created successfully!');
-        return Redirect()->route('admin.genre.index');
+
+        $tag->fill($data)->save();
+        Session::flash('success', 'The Tag was created successfully!');
+        return Redirect()->route('admin.tag.index');
 
     }
 
