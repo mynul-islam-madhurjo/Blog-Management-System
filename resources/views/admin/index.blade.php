@@ -1,23 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between{
-            margin-top: 10px;
-        }
-        .paginationCustom{
-            padding: 13px 10px;
-            overflow: hidden;
-        }
-    </style>
-
     <div class="container">
         <div class="row">
             <div class="col-10">
                 <h1>All Blogs</h1>
             </div>
             <div class="col-12 col-md-2">
-                <a href="{{ route('admin.create') }}" class="btn btn-lg btn-block btn-primary">New Post</a>
+                <a href="{{ route('admin.create') }}" class="btn btn-lg btn-block btn-primary">New Blog</a>
             </div>
         </div>
         <div class="row">
@@ -29,7 +19,7 @@
                     <th>Body</th>
                     <th>Created At</th>
                     <th>Author</th>
-                    <th></th>
+                    <th>Action</th>
                     </thead>
                     <tbody>
                     @php($i = 1)
@@ -46,8 +36,8 @@
                                 <td>
                                     {{--<a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>--}}
-                                    <a href="" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
-                                    <a href="" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>
+                                    <a href="" class="btn btn-success">View</a>
+                                    <a href="{{url('/admin/blogs/edit/'.$blog->id)}}" class="btn btn-info">Edit</a>
                                 </td>
                             </tr>
                         @endforeach

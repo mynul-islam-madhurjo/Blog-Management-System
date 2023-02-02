@@ -32,8 +32,9 @@ class Blog extends Model
         return $this->belongsToMany(tag::class)->withTimeStamps();
     }
     public function user() {
-        return $this->hasOne(User::class,'id','user_id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
-
-
+    public function genre() {
+        return $this->belongsTo(BlogGenre::class,'blog_genre_id','id');
+    }
 }

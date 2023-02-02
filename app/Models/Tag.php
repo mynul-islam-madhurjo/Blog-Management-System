@@ -13,4 +13,10 @@ class tag extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function blogs()
+    {
+        return $this->hasOne(Blog::class);
+    }
+
 }

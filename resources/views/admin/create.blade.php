@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-12 col-md-8 offset-md-2">
-        <h1>Create New Post</h1>
+        <h1>Create New Blog</h1>
         <hr>
         <form action="{{ route('admin.store') }}" method="post" data-parsley-validate>
             @csrf
@@ -22,9 +22,9 @@
             </div>
 
             <div class="form-group my-4">
-                <label for="body">Select Category</label>
+                <label for="body">Select Genre</label>
                 <select class="custom-select" name="blog_genre_id">
-                    <option disabled selected value> -- Select a Category -- </option>
+                    <option disabled selected value> -- Select a Genre -- </option>
                     @foreach($genreLists as $genreList)
                         <option value="{{ $genreList->id }}">{{ $genreList->catagory }}</option>
                     @endforeach

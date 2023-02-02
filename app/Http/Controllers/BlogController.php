@@ -8,6 +8,7 @@ use App\Models\tag;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 
@@ -20,7 +21,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::latest()->paginate(5);
+        $blogs = Blog::with('user')->latest()->paginate(5);
         return view('blog.index',compact("blogs"));
     }
 
@@ -144,6 +145,28 @@ class BlogController extends Controller
     public function edit($id)
     {
         //
+        $tags = tag::all();
+        $genres = BlogGenre::all();
+        $blogs = Blog::with('tags')->find($id);
+
+
+        $statuses = array(
+            '1' => 'Active',
+            '2' => 'Inactive'
+        );
+
+        //return $blogs;
+
+
+/*        $tags = DB::table('blog_tag')
+            ->join('blog', 'blog_tag.blog_id', '=', 'blog.id')
+            ->join('tags','blog_tag.tag_id','=','tags.name')
+            ->where('blog.id',$id)
+            ->select('tags.name')
+            ->get();*/
+
+        return view('admin.edit', compact('tags','blogs','genres','statuses'));
+
     }
 
     /**
@@ -155,7 +178,25 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = $request->validate([
+            'title'         => 'required|max:255',
+            'blog_genre_id' => 'required|integer',
+            'description'   => 'required',
+            'status'        => 'required',
+            'tags'          => 'required|array',
+        ]);
+
+
+        $blog = Blog::find($id)->update([
+            'title' => $validator['title'],
+            'blog_genre_id' => $validator['blog_genre_id'],
+            'description' => $validator['title'],
+            'status' => $validator['blog_genre_id'],
+        ]);
+
+        Session::flash('success', 'The blog was updated successfully!');
+        return Redirect()->back();
+
     }
 
     /**

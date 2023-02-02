@@ -36,9 +36,11 @@ Auth::routes();
 Route::middleware(['auth','role:admin'])->group(function () {
 
     //Blog Routes
-    Route::get('/admin', [BlogController::class, 'adminIndex'])-> name('admin.index');
-    Route::get('/admin/create', [BlogController::class, 'create'])-> name('admin.create');
-    Route::post('/admin/create', [BlogController::class, 'store'])-> name('admin.store');
+    Route::get('/admin/blogs', [BlogController::class, 'adminIndex'])-> name('admin.index');
+    Route::get('/admin/blogs/create', [BlogController::class, 'create'])-> name('admin.create');
+    Route::post('/admin/blogs/create', [BlogController::class, 'store'])-> name('admin.store');
+    Route::get('/admin/blogs/edit/{id}', [BlogController::class, 'edit']);
+    Route::post('/admin/blogs/update/{id}', [BlogController::class, 'update']);
 
     //Genre Routes
     Route::get('/admin/genres', [GenreController::class, 'index'])-> name('admin.genre.index');

@@ -108,6 +108,7 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return $id;
         //return $request->all();
         $validator = $request->validate([
             'catagory' => 'required|max:25',
