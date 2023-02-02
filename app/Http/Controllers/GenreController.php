@@ -15,7 +15,7 @@ class GenreController extends Controller
     public function index()
     {
         //
-        $genres = BlogGenre::all();
+        $genres = BlogGenre::latest()->paginate(5);
         return view('admin.blog_genre.index',compact("genres"));
 
     }
@@ -41,14 +41,23 @@ class GenreController extends Controller
     public function store(Request $request)
     {
 
-        $inputs = $request->all();
+        //$inputs = $request->all();
 
-        $validator = \Validator::make($inputs, array(
+//        $validator = \Validator::make($inputs, array(
+//            'catagory' => 'required|max:25',
+//        ));
+//        if ($validator->fails()) {
+//            return Redirect()->back()->withErrors($validator)->withInput();
+//        }
+
+        $validator = $request->validate([
             'catagory' => 'required|max:25',
-        ));
-        if ($validator->fails()) {
-            return Redirect()->back()->withErrors($validator)->withInput();
-        }
+        ],
+            [
+                'catagory.min' => 'not gonna work',
+            ]
+        );
+
         $catagory = new BlogGenre;
         $data = array(
             'catagory' => $request->catagory,
@@ -79,7 +88,15 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genres = BlogGenre::find($id);
+
+        $statuses = array(
+            '1' => 'Active',
+            '2' => 'Inactive'
+        );
+
+        return view('admin.blog_genre.edit',compact('genres','statuses'));
+
     }
 
     /**
@@ -91,7 +108,19 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request->all();
+        $validator = $request->validate([
+            'catagory' => 'required|max:25',
+            'status' => 'required',
+        ]);
+
+        $genre = BlogGenre::find($id)->update([
+            'catagory' => $validator['catagory'],
+            'status' => $validator['status']
+        ]);
+
+        Session::flash('success', 'The genre was updated successfully!');
+        return Redirect()->route('admin.genre.index');
     }
 
     /**

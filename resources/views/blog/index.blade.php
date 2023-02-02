@@ -15,9 +15,8 @@
                 <div class="col-12 col-md-8">
                     <div class="list-item">
                         <h2>{{ $blog->title }}</h2>
-                        {{--                    <div class="tags btn-btmargin">--}}
+                                            <div class="tags btn-btmargin">
                         {{--                        @foreach($post->tags as $tag)--}}
-
                         {{--                            <span class="badge badge-secondary">{{ $tag->name }}</span>--}}
 
                         {{--                        @endforeach--}}
@@ -33,10 +32,12 @@
             {{--                <p><strong>Category:</strong> {{ $post->category != null ? $post->category->category : "None" }}</p>--}}
         </div>
         @endforeach
-        <div class="col-12">
-            {{--            {!! $blogs->links(); !!}--}}
-        </div>
-    </div></div>
 
+{{--        <div class="col-12">--}}
+{{--                        --}}
+{{--        </div>--}}
+
+                {{$blogs->links()}}
+    </div></div>
 
 @stop

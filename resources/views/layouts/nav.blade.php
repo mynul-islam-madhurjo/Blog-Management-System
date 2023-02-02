@@ -18,7 +18,7 @@
                         <li><a class="dropdown-item" href="{{ route('admin.index') }}">Manage Blogs</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.genre.index') }}">Manage Genres</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.tag.index') }}">Manage Tags</a></li>
-                        <li><a class="dropdown-item" href="#">Manage Users</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.user.index') }}">Manage Users</a></li>
                     </ul>
                 </li>
             </ul>

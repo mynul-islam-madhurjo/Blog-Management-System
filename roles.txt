@@ -12,3 +12,5 @@ Adding a column to users table
 2. Go to migration file and add $table-> integer('status')->default(0);
 3. php artisan migrate
 
+Useful Functions
+1. diffForHumans(); (Used in blade files it shows like the amount of time ago posted)

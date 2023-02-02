@@ -27,4 +27,10 @@ class HomeController extends Controller
         $users = User::all();
         return view('home',compact("users"));
     }
+
+    public function userIndex()
+    {
+        $users = User::all();
+        return view('admin.users.index',compact("users"));
+    }
 }

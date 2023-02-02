@@ -10,7 +10,6 @@ class BlogGenre extends Model
     use HasFactory;
 
     protected $table    = 'blog_genres';
-    public $timestamps  = false;
     protected $fillable = [
         'catagory',
         'status',

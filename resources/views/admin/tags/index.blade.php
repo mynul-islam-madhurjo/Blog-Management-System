@@ -21,10 +21,11 @@
                     <th></th>
                     </thead>
                     <tbody>
+                    @php($i = 1)
                         @foreach($tags as $tag)
 
                             <tr>
-                                <td>{{ $tag->id }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $tag->name }}</td>
                                 <td>
 {{--                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
