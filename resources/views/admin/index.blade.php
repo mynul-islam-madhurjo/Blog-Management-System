@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-10">
@@ -28,8 +29,8 @@
                                 <th>{{ $i++ }}</th>
                                 <td>{{ $blog->title }}</td>
                                 <td>
-                                    {{ substr($blog->description, 0, 50) }}
-                                    {{ strlen($blog->description) > 50 ? '...':'' }}
+{{--                                    {{ substr($blog->description, 0, 50) }}--}}
+                                    {{ strlen($blog->description) > 50 ? substr($blog->description, 0, 50). '...': $blog->description }}
                                 </td>
                                 <td>{{ date('M j, Y g:i', strtotime($blog->created_at)) }}</td>
                                 <td>{{ $blog->user->name }}</td>
@@ -38,8 +39,35 @@
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>--}}
                                     <a href="" class="btn btn-success">View</a>
                                     <a href="{{url('/admin/blogs/edit/'.$blog->id)}}" class="btn btn-info">Edit</a>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal.{{$blog->id}}">
+                                        View Tag
+                                    </button>
+                                    <a href="{{ url('/admin/blogs/delete/'.$blog->id) }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
+                            <!-- Start Modal -->
+                            <div class="modal fade" id="exampleModal.{{$blog->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul class="list-group">
+                                                @foreach($blog->tags as $tag)
+                                                    <li class="list-group-item">{{$tag->name}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{--    End Modal--}}
                         @endforeach
                     </tbody>
                 </table>

@@ -33,7 +33,7 @@ class BlogController extends Controller
      */
     public function adminIndex()
     {
-        $blogs = Blog::latest()->paginate(5);
+        $blogs = Blog::with('tags')->latest()->paginate(5);
         return view('admin.index',compact("blogs"));
     }
     /**
@@ -149,6 +149,9 @@ class BlogController extends Controller
         $genres = BlogGenre::all();
         $blogs = Blog::with('tags')->find($id);
 
+        //$tags = tag::where();
+
+
 
         $statuses = array(
             '1' => 'Active',
@@ -186,13 +189,20 @@ class BlogController extends Controller
             'tags'          => 'required|array',
         ]);
 
+        $updated_blog = Blog::query()->findOrFail($id);
 
-        $blog = Blog::find($id)->update([
+        $tags = $validator['tags'];
+
+//        $updated_blog->tags()->where('blog_id', $id)->detach($tags);
+
+        $updated_blog->update([
             'title' => $validator['title'],
             'blog_genre_id' => $validator['blog_genre_id'],
             'description' => $validator['title'],
-            'status' => $validator['blog_genre_id'],
+            'status' => $validator['status'],
         ]);
+
+        $updated_blog->tags()->sync($tags);
 
         Session::flash('success', 'The blog was updated successfully!');
         return Redirect()->back();
@@ -208,5 +218,8 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+        $blog = Blog::find($id);
+        $blog->delete();
+        return redirect()->back()->with('success','The blog was deleted was deleted successfully');
     }
 }
