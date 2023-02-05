@@ -42,6 +42,7 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/blogs/edit/{id}', [BlogController::class, 'edit']);
     Route::post('/admin/blogs/update/{id}', [BlogController::class, 'update']);
     Route::get('/admin/blogs/delete/{id}', [BlogController::class, 'destroy']);
+    Route::get('/admin/blogs/show/{id}', [BlogController::class, 'show']);
 
     //Genre Routes
     Route::get('/admin/genres', [GenreController::class, 'index'])-> name('admin.genre.index');

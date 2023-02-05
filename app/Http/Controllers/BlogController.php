@@ -134,6 +134,11 @@ class BlogController extends Controller
     public function show($id)
     {
         //
+        $blog = Blog::with('tags')->with('user')->with('genre')->find($id);
+
+
+
+        return view('admin.show', compact('blog'));
     }
 
     /**

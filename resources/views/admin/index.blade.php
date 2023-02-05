@@ -37,7 +37,7 @@
                                 <td>
                                     {{--<a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>--}}
-                                    <a href="" class="btn btn-success">View</a>
+                                    <a href="{{url('/admin/blogs/show/'.$blog->id)}}" class="btn btn-info">View</a>
                                     <a href="{{url('/admin/blogs/edit/'.$blog->id)}}" class="btn btn-info">Edit</a>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal.{{$blog->id}}">
                                         View Tag
