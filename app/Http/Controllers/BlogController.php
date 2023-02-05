@@ -77,7 +77,7 @@ class BlogController extends Controller
             'description'   => 'required',
             'status'        => 'required',
             'tags'          => 'required|array',
-            'blog_image'          => 'required|mimes: jpg,jpeg,png',
+            'blog_image'    => 'required|mimes: jpg,jpeg,png',
         ])->validate();
 
 /*        $inputs = $request->all();
@@ -218,17 +218,40 @@ class BlogController extends Controller
             'tags'          => 'required|array',
         ]);
 
-        $updated_blog = Blog::query()->findOrFail($id);
+        // Start Image process
 
+        $old_image = $request->old_image;
+        $blog_image = $request->file('blog_image');
+        //random id
+        $name_gen = hexdec(uniqid());
+        //jpg
+        $img_ext = strtolower($blog_image->getClientOriginalExtension());
+        $img_name = $name_gen. '.' . $img_ext;
+        $img_loc = 'images/blog/';
+        //$var = File::isDirectory($img_loc);
+        //dd(!File::isDirectory($img_loc));
+
+        if (!File::isDirectory($img_loc)){
+            File::makeDirectory($img_loc, 0777, true, true);
+        }
+
+        $img_upload = $img_loc.$img_name;
+        $blog_image->move($img_loc,$img_name);
+        unlink($old_image);
+
+
+
+        // End Image process
+        $updated_blog = Blog::query()->findOrFail($id);
         $tags = $validator['tags'];
 
 //        $updated_blog->tags()->where('blog_id', $id)->detach($tags);
-
         $updated_blog->update([
             'title' => $validator['title'],
             'blog_genre_id' => $validator['blog_genre_id'],
             'description' => $validator['title'],
             'status' => $validator['status'],
+            'blog_image' => $img_upload,
         ]);
 
         $updated_blog->tags()->sync($tags);

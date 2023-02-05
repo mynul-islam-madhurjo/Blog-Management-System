@@ -7,7 +7,6 @@
 
 @endsection
 
-
 @section('content')
 
     <div class="row">
@@ -57,16 +56,16 @@
                     </select>
                 </div>
 
+                <input type="hidden" name="old_image" value="{{$blogs->blog_image}}">
+
                 <div class="form-group">
                     <label for="title">Images</label>
-                    <input class="form-control" type="file" name="image-blog" value="{{$blogs->blog_image}}" required>
+                    <input class="form-control" type="file" name="blog_image" required>
                 </div>
 
                 <div class="form-group">
                     <img src="{{asset($blogs->blog_image)}}" style="height: 120px; width: 90px;">
                 </div>
-
-
 
 
                 <button type="submit" name='submit' class="btn btn-success form-control my-4" >Update Blog</button>
