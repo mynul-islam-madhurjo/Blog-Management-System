@@ -19,6 +19,7 @@ class AddBlogTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('blog_genre_id');
             $table->string('description');
+            $table->string('blog_image');
             $table->string('title');
             $table->integer('status');
             $table->timestamps();

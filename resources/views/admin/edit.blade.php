@@ -57,6 +57,18 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="title">Images</label>
+                    <input class="form-control" type="file" name="image-blog" value="{{$blogs->blog_image}}" required>
+                </div>
+
+                <div class="form-group">
+                    <img src="{{asset($blogs->blog_image)}}" style="height: 120px; width: 90px;">
+                </div>
+
+
+
+
                 <button type="submit" name='submit' class="btn btn-success form-control my-4" >Update Blog</button>
             </form>
         </div>
@@ -67,7 +79,7 @@
 @section('scripts')
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    
+
     <script src="{{ asset('js/parsley.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
 

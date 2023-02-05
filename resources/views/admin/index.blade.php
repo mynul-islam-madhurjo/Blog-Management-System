@@ -18,6 +18,7 @@
                     <th>#</th>
                     <th class="large-col">Title</th>
                     <th>Body</th>
+                    <th>Images</th>
                     <th>Created At</th>
                     <th>Author</th>
                     <th>Action</th>
@@ -32,6 +33,7 @@
 {{--                                    {{ substr($blog->description, 0, 50) }}--}}
                                     {{ strlen($blog->description) > 50 ? substr($blog->description, 0, 50). '...': $blog->description }}
                                 </td>
+                                <td><img src="{{ asset($blog->blog_image) }}" style="height: 60px; width: 90px;"></td>
                                 <td>{{ date('M j, Y g:i', strtotime($blog->created_at)) }}</td>
                                 <td>{{ $blog->user->name }}</td>
                                 <td>
@@ -42,7 +44,7 @@
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal.{{$blog->id}}">
                                         View Tag
                                     </button>
-                                    <a href="{{ url('/admin/blogs/delete/'.$blog->id) }}" class="btn btn-danger">Delete</a>
+                                    <a href="{{ url('/admin/blogs/delete/'.$blog->id) }}" onclick="return confirm('Are you sure to delete')" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             <!-- Start Modal -->

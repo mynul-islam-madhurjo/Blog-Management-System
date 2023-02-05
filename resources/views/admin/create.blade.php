@@ -14,7 +14,7 @@
     <div class="col-12 col-md-8 offset-md-2">
         <h1>Create New Blog</h1>
         <hr>
-        <form action="{{ route('admin.store') }}" method="post" data-parsley-validate>
+        <form action="{{ route('admin.store') }}" method="post" data-parsley-validate enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
@@ -32,11 +32,17 @@
             </div>
 
             <div class="form-group">
-                <label for="body">Post Body</label>
+                <label for="body">Blog Description</label>
                 <textarea class="form-control" name="description" rows=10 required></textarea>
             </div>
 
+            <div class="form-group my-4">
+                <label for="body">Blog Image</label>
+                <input class="form-control" type="file" name="blog_image">
+            </div>
+
             <div class="form-group">
+                <label for="body">Blog Tags</label>
                 <select class="form-control select2-multi" name="tags[]" multiple="multiple">
                     @foreach($tagLists as $tag)
                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -45,7 +51,7 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group my-4">
                 <label for="status">Status</label>
                 <select id="status" name="status" class="form-control">
                     <option value="1"> Active</option>

@@ -25,6 +25,7 @@ class Blog extends Model
         'description',
         'title',
         'status',
+        'blog_image',
     ];
 
     public function tags() :BelongsToMany

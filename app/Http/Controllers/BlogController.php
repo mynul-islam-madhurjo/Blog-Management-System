@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\DB;
 use Session;
+use File;
 
 
 class BlogController extends Controller
@@ -76,7 +77,29 @@ class BlogController extends Controller
             'description'   => 'required',
             'status'        => 'required',
             'tags'          => 'required|array',
+            'blog_image'          => 'required|mimes: jpg,jpeg,png',
         ])->validate();
+
+/*        $inputs = $request->all();
+        dd($inputs);*/
+
+        $blog_image = $request->file('blog_image');
+        //random id
+        $name_gen = hexdec(uniqid());
+        //jpg
+        $img_ext = strtolower($blog_image->getClientOriginalExtension());
+        $img_name = $name_gen. '.' . $img_ext;
+        $img_loc = 'images/blog/';
+        //$var = File::isDirectory($img_loc);
+        //dd(!File::isDirectory($img_loc));
+
+        if (!File::isDirectory($img_loc)){
+            File::makeDirectory($img_loc, 0777, true, true);
+        }
+
+        $img_upload = $img_loc.$img_name;
+        $blog_image->move($img_loc,$img_name);
+
 
 //        if ($validator->fails()) {
 //            return Redirect()->back()->withErrors($validator)->withInput();
@@ -87,6 +110,7 @@ class BlogController extends Controller
         $data['status']        = $validator['status'];
         $data['description']   = $validator['description'];
         $data['user_id']       = auth()->user()->id;
+        $data['blog_image']    = $img_upload;
 
         $create_post = Blog::query()->create($data);
 
@@ -224,6 +248,10 @@ class BlogController extends Controller
     {
         //
         $blog = Blog::find($id);
+        if(!empty($blog->blog_image)){
+            $image = $blog->blog_image;
+            unlink($image);
+        }
         $blog->delete();
         return redirect()->back()->with('success','The blog was deleted was deleted successfully');
     }
