@@ -221,6 +221,8 @@ class BlogController extends Controller
         // Start Image process
 
         $old_image = $request->old_image;
+
+
         $blog_image = $request->file('blog_image');
         //random id
         $name_gen = hexdec(uniqid());
@@ -234,17 +236,15 @@ class BlogController extends Controller
         if (!File::isDirectory($img_loc)){
             File::makeDirectory($img_loc, 0777, true, true);
         }
-
         $img_upload = $img_loc.$img_name;
         $blog_image->move($img_loc,$img_name);
-        unlink($old_image);
 
-
-
+        if($old_image!=null){
+            unlink($old_image);
+        }
         // End Image process
         $updated_blog = Blog::query()->findOrFail($id);
         $tags = $validator['tags'];
-
 //        $updated_blog->tags()->where('blog_id', $id)->detach($tags);
         $updated_blog->update([
             'title' => $validator['title'],

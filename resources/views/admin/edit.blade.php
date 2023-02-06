@@ -13,7 +13,7 @@
         <div class="col-12 col-md-8 offset-md-2">
             <h1>Edit Blog</h1>
             <hr>
-            <form action="{{url('/admin/blogs/update/'.$blogs->id)}}" method="post" data-parsley-validate>
+            <form action="{{url('/admin/blogs/update/'.$blogs->id)}}" method="post" data-parsley-validate enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="title">Title</label>
