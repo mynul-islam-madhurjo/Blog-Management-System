@@ -18,7 +18,6 @@
                     <thead>
                     <th>#</th>
                     <th class="large-col">Tags</th>
-                    <th></th>
                     </thead>
                     <tbody>
                     @php($i = 1)
@@ -27,12 +26,6 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $tag->name }}</td>
-                                <td>
-{{--                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm btn-btmargin form-control">View</a>
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm btn-btmargin form-control">Edit</a>--}}
-                                    <a href="" class="btn btn-success">View</a>
-                                    <a href="" class="btn btn-info">Edit</a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

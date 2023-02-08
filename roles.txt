@@ -12,4 +12,11 @@ Adding a column to users table
 3. php artisan migrate
 
 Useful Functions
-1. diffForHumans(); (Used in blade files it shows like the amount of time ago posted)
+1. diffForHumans(); (Used in blade files it shows like the amount of time ago posted.
+
+Creating Jobs
+1. php artisan queue:table
+2. php artisan migrate
+3. php artisan make:job ProcessInvoice (Creating the job file)
+4. php artisan queue:work  (Running the job on the background)
+

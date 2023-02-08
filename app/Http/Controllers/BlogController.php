@@ -34,7 +34,9 @@ class BlogController extends Controller
      */
     public function adminIndex()
     {
-        $blogs = Blog::with('tags')->latest()->paginate(5);
+        //$blogs = Blog::with('tags')->latest()->paginate(5);
+
+        $blogs = Blog::with('tags')->orderBy('id','desc')->paginate(5);
         return view('admin.index',compact("blogs"));
     }
     /**

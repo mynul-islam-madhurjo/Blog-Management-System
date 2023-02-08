@@ -14,4 +14,10 @@ class BlogGenre extends Model
         'catagory',
         'status',
     ];
+
+    public function blog() {
+        return $this->hasMany(Blog::class, 'blog_genre_id', 'id');
+    }
 }
+
+

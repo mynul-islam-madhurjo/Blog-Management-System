@@ -19,6 +19,7 @@
                         <li><a class="dropdown-item" href="{{ route('admin.genre.index') }}">Manage Genres</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.tag.index') }}">Manage Tags</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.user.index') }}">Manage Users</a></li>
+                        <li><a class="dropdown-item" href="">Manage Data</a></li>
                     </ul>
                 </li>
             </ul>

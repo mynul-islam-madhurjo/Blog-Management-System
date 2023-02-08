@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagController;
@@ -59,6 +60,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
     //User Routes
     Route::get('/admin/users', [HomeController::class, 'userIndex'])-> name('admin.user.index');
 
+    //Data Routes
+    Route::get('/admin/data/create', [DataController::class, 'create'])-> name('admin.data.create');
+    Route::post('/admin/data/store', [DataController::class, 'store'])-> name('admin.data.store');
+    Route::get('/admin/data/upload', [DataController::class, 'upload']);
     });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
