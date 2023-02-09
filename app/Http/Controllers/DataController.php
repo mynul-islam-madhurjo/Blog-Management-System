@@ -73,9 +73,6 @@ class DataController extends Controller
             $files = glob("$path./*.csv");
             $header = [];
 
-            return $files;
-
-
             foreach ($files as $key => $file) {
                 $data = array_map('str_getcsv', file($file));
                 //Grabing header from the first file

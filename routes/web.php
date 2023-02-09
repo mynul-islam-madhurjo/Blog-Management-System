@@ -66,6 +66,6 @@ Route::middleware(['auth','role:admin'])->group(function () {
     Route::get('/admin/data/upload', [DataController::class, 'upload']);
     });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'newIndex'])->name('home');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog.index');
 

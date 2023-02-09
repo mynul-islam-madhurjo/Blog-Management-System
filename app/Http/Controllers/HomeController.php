@@ -28,6 +28,11 @@ class HomeController extends Controller
         return view('home',compact("users"));
     }
 
+    public function newIndex()
+    {
+        return view('admin.template.admin_master');
+    }
+
     public function userIndex()
     {
         $users = User::all();

@@ -12,14 +12,14 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Admin Mangement
+                        Admin Management
                     </a>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                         <li><a class="dropdown-item" href="{{ route('admin.index') }}">Manage Blogs</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.genre.index') }}">Manage Genres</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.tag.index') }}">Manage Tags</a></li>
                         <li><a class="dropdown-item" href="{{ route('admin.user.index') }}">Manage Users</a></li>
-                        <li><a class="dropdown-item" href="">Manage Data</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.data.create') }}">Manage Data</a></li>
                     </ul>
                 </li>
             </ul>
